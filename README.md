@@ -1,0 +1,104 @@
+# podfetcher-tools
+
+SDK + CLI + MCP server for the Podfetcher backend data-plane API.
+
+## Features
+- Shared SDK for API auth, requests, and error handling
+- CLI for show search, episode lookup, and transcript fetch
+- MCP server exposing the same operations as tools
+
+## Requirements
+- Node.js 20+
+- A valid Podfetcher API key (`X-API-Key`)
+
+## Install / Run
+From repo root:
+
+```bash
+cd clients/podfetcher-tools
+chmod +x src/cli.js src/mcp.js
+```
+
+You can run scripts directly:
+
+```bash
+node src/cli.js --help
+node src/mcp.js --help
+```
+
+Or via npm bin links (if installed globally/in a workspace setup):
+- `podfetcher`
+- `podfetcher-mcp`
+
+## Configuration
+Environment variables:
+
+- `PODFETCHER_BASE_URL` (default `http://localhost:8080`)
+- `PODFETCHER_API_KEY` (required)
+- `PODFETCHER_API_KEY_HEADER` (default `X-API-Key`)
+
+CLI flags can override env values:
+- `--base-url`
+- `--api-key`
+- `--api-key-header`
+- `--timeout-ms`
+
+## CLI Usage
+
+### Search shows
+```bash
+node src/cli.js shows search --q "ai" --limit 5
+```
+
+### List episodes for a show
+```bash
+node src/cli.js shows episodes --show-id pi_1001 --order-by publishedAt --order desc --limit 10
+```
+
+### Fetch transcript for an episode
+```bash
+node src/cli.js transcripts fetch --episode-id ep_pi_1001_004
+```
+
+### Fetch transcript and wait until READY
+```bash
+node src/cli.js transcripts fetch \
+  --episode-id ep_pi_1001_002 \
+  --wait \
+  --poll-interval-ms 1000 \
+  --wait-timeout-ms 60000
+```
+
+### Machine-readable JSON output
+```bash
+node src/cli.js shows search --q "ai" --json
+```
+
+## MCP Usage
+Run the MCP server over stdio:
+
+```bash
+node src/mcp.js
+```
+
+Available tools:
+- `search_shows`
+- `list_episodes`
+- `fetch_transcript`
+
+Example MCP server config snippet:
+
+```json
+{
+  "mcpServers": {
+    "podfetcher": {
+      "command": "node",
+      "args": ["/absolute/path/to/clients/podfetcher-tools/src/mcp.js"],
+      "env": {
+        "PODFETCHER_BASE_URL": "http://localhost:8080",
+        "PODFETCHER_API_KEY": "pfk_..."
+      }
+    }
+  }
+}
+```

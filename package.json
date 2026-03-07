@@ -1,16 +1,32 @@
 {
   "name": "podfetcher-tools",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
-  "description": "Podfetcher backend SDK, CLI, and MCP server",
+  "description": "SDK, CLI, and MCP server for the Podfetcher transcript API",
+  "keywords": ["podfetcher", "podcast", "transcript", "sdk", "cli", "mcp"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FloHiwg/podfetcher-tools.git"
+  },
+  "homepage": "https://github.com/FloHiwg/podfetcher-tools#readme",
+  "bugs": {
+    "url": "https://github.com/FloHiwg/podfetcher-tools/issues"
+  },
   "bin": {
     "podfetcher": "./src/cli.js",
     "podfetcher-mcp": "./src/mcp.js"
   },
+  "files": [
+    "src",
+    "README.md",
+    "CONTRIBUTING.md"
+  ],
+  "exports": {
+    ".": "./src/sdk.js"
+  },
   "scripts": {
-    "lint": "node --check src/*.js",
-    "typecheck": "node --check src/*.js"
+    "lint": "node --check src/*.js"
   },
   "engines": {
     "node": ">=20.0.0"

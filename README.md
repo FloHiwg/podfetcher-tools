@@ -33,8 +33,8 @@ Or via npm bin links (if installed globally/in a workspace setup):
 ## Configuration
 Environment variables:
 
-- `PODFETCHER_BASE_URL` (default `http://localhost:8080`)
-- `PODFETCHER_API_KEY` (required)
+- `PODFETCHER_BASE_URL` (default `https://api.podfetcher.com`)
+- `PODFETCHER_API_KEY` (required, format: `pk_live_...`)
 - `PODFETCHER_API_KEY_HEADER` (default `X-API-Key`)
 
 CLI flags can override env values:
@@ -95,8 +95,7 @@ Example MCP server config snippet:
       "command": "node",
       "args": ["/absolute/path/to/clients/podfetcher-tools/src/mcp.js"],
       "env": {
-        "PODFETCHER_BASE_URL": "http://localhost:8080",
-        "PODFETCHER_API_KEY": "pfk_..."
+        "PODFETCHER_API_KEY": "pk_live_..."
       }
     }
   }

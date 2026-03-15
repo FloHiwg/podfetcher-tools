@@ -7,9 +7,11 @@ Use the `podfetcher` CLI to search podcasts, list episodes, and fetch transcript
 Set environment variables before running any command:
 
 ```bash
-export PODFETCHER_API_KEY="your-api-key"
-export PODFETCHER_BASE_URL="https://api.podfetcher.com"  # omit for localhost:8080
+export PODFETCHER_API_KEY="pk_live_your_key_here"
+export PODFETCHER_BASE_URL="https://api.podfetcher.dev"  # omit for localhost:8080
 ```
+
+API keys are generated from the Podfetcher dashboard and always start with `pk_live_`.
 
 Or pass `--api-key` and `--base-url` flags directly on each command.
 

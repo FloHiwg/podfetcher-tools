@@ -11,24 +11,19 @@ SDK + CLI + MCP server for the Podfetcher backend data-plane API.
 - Node.js 20+
 - A valid Podfetcher API key (`X-API-Key`)
 
-## Install / Run
-From repo root:
+## Install
+
+Install globally from npm to use the `podfetcher` and `podfetcher-mcp` commands anywhere:
 
 ```bash
-cd clients/podfetcher-tools
-chmod +x src/cli.js src/mcp.js
+npm install -g podfetcher-tools
 ```
 
-You can run scripts directly:
+Then verify:
 
 ```bash
-node src/cli.js --help
-node src/mcp.js --help
+podfetcher --help
 ```
-
-Or via npm bin links (if installed globally/in a workspace setup):
-- `podfetcher`
-- `podfetcher-mcp`
 
 ## Configuration
 Environment variables:

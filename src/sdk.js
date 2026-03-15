@@ -1,4 +1,4 @@
-const DEFAULT_BASE_URL = "http://localhost:8080";
+const DEFAULT_BASE_URL = "https://api.podfetcher.com";
 const DEFAULT_API_KEY_HEADER = "X-API-Key";
 const DEFAULT_TIMEOUT_MS = 15_000;
 

@@ -21,7 +21,7 @@ Groups and commands:
   transcripts fetch   Fetch transcript for an episode
 
 Global options:
-  --base-url <url>       API base URL (env: PODFETCHER_BASE_URL, default: http://localhost:8080)
+  --base-url <url>       API base URL (env: PODFETCHER_BASE_URL, default: https://api.podfetcher.com)
   --api-key <key>        API key (env: PODFETCHER_API_KEY)
   --api-key-header <h>   API key header (env: PODFETCHER_API_KEY_HEADER, default: X-API-Key)
   --timeout-ms <ms>      HTTP timeout per request (default: 15000)

@@ -1,6 +1,6 @@
 {
   "name": "podfetcher-tools",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "SDK, CLI, and MCP server for the Podfetcher transcript API",
   "keywords": ["podfetcher", "podcast", "transcript", "sdk", "cli", "mcp"],

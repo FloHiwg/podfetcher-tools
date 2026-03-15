@@ -8,10 +8,9 @@ Set environment variables before running any command:
 
 ```bash
 export PODFETCHER_API_KEY="pk_live_your_key_here"
-export PODFETCHER_BASE_URL="https://api.podfetcher.com"  # omit for localhost:8080
 ```
 
-API keys are generated from the Podfetcher dashboard and always start with `pk_live_`.
+API keys are generated from the Podfetcher dashboard and always start with `pk_live_`. The base URL defaults to `https://api.podfetcher.com` — no need to set it.
 
 Or pass `--api-key` and `--base-url` flags directly on each command.
 
@@ -108,7 +107,7 @@ podfetcher transcripts fetch --episode-id ep_pi_1001_002 --wait --wait-timeout-m
 | Flag | Env var | Default |
 |------|---------|---------|
 | `--api-key <key>` | `PODFETCHER_API_KEY` | — |
-| `--base-url <url>` | `PODFETCHER_BASE_URL` | `http://localhost:8080` |
+| `--base-url <url>` | `PODFETCHER_BASE_URL` | `https://api.podfetcher.com` |
 | `--api-key-header <header>` | `PODFETCHER_API_KEY_HEADER` | `X-API-Key` |
 | `--timeout-ms <ms>` | — | `15000` |
 | `--json` | — | false |

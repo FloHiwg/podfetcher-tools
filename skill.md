@@ -8,7 +8,7 @@ Set environment variables before running any command:
 
 ```bash
 export PODFETCHER_API_KEY="pk_live_your_key_here"
-export PODFETCHER_BASE_URL="https://api.podfetcher.dev"  # omit for localhost:8080
+export PODFETCHER_BASE_URL="https://api.podfetcher.com"  # omit for localhost:8080
 ```
 
 API keys are generated from the Podfetcher dashboard and always start with `pk_live_`.

@@ -1,11 +1,29 @@
 ---
 name: podfetcher-tools
-description: Use this skill when you need to search podcast shows, list show episodes, or fetch episode transcripts from the Podfetcher API via the bundled CLI or MCP server.
+description: Search podcasts, browse episodes, and fetch podcast transcripts from Podfetcher using the bundled Node.js CLI, SDK, or MCP server.
+version: 0.5.1
+metadata:
+  openclaw:
+    requires:
+      env:
+        - PODFETCHER_API_KEY
+        - PODFETCHER_BASE_URL
+        - PODFETCHER_API_KEY_HEADER
+      bins:
+        - node
+    primaryEnv: PODFETCHER_API_KEY
+    homepage: https://podfetcher.com
 ---
 
 # Podfetcher Tools
 
-Use the bundled Node clients in this directory to interact with the Podfetcher API.
+Podfetcher Tools is a Node.js client bundle for the Podfetcher API. It gives you three ways to work with podcast data from the same package:
+
+- a CLI for quick terminal workflows
+- an SDK for custom scripts and apps
+- an MCP server so agents can search shows, list episodes, and fetch transcripts
+
+Use it when you want to discover podcasts, inspect episode catalogs, or retrieve transcripts from [podfetcher.com](https://podfetcher.com).
 
 ## Requirements
 
@@ -14,25 +32,40 @@ Use the bundled Node clients in this directory to interact with the Podfetcher A
 
 The default API base URL is `https://api.podfetcher.com`. Override it only when targeting a non-production environment.
 
+## Getting Started
+
+1. Create or sign in to your account at [podfetcher.com](https://podfetcher.com).
+2. Generate an API key from the Podfetcher dashboard.
+3. Export the key before running the CLI or MCP server:
+
+```bash
+export PODFETCHER_API_KEY="pk_live_your_key_here"
+```
+
+Optional overrides:
+
+- `PODFETCHER_BASE_URL` for non-production environments
+- `PODFETCHER_API_KEY_HEADER` if you need a non-default header name
+
 ## Entry Points
 
-Run commands from this directory, or reference these files by absolute path from another workspace:
+If the package is installed globally from npm, use these binaries:
+
+- `podfetcher`
+- `podfetcher-mcp`
+
+If you are working from a local checkout instead, run commands from this directory or reference these files by absolute path from another workspace:
 
 - CLI: `node src/cli.js`
 - MCP server: `node src/mcp.js`
 - SDK import: `./src/sdk.js`
-
-If the package is installed globally from npm, the binaries are:
-
-- `podfetcher`
-- `podfetcher-mcp`
 
 ## CLI Commands
 
 ### Search shows
 
 ```bash
-node src/cli.js shows search --q "<query>" [--limit <n>] [--cursor <cursor>] [--json]
+podfetcher shows search --q "<query>" [--limit <n>] [--cursor <cursor>] [--json]
 ```
 
 - `--q` is required
@@ -42,7 +75,7 @@ node src/cli.js shows search --q "<query>" [--limit <n>] [--cursor <cursor>] [--
 ### List episodes
 
 ```bash
-node src/cli.js shows episodes --show-id <showId> [--from <iso>] [--to <iso>] [--since <iso>] [--order-by publishedAt] [--order asc|desc] [--limit <n>] [--cursor <cursor>] [--json]
+podfetcher shows episodes --show-id <showId> [--from <iso>] [--to <iso>] [--since <iso>] [--order-by publishedAt] [--order asc|desc] [--limit <n>] [--cursor <cursor>] [--json]
 ```
 
 - `--show-id` is required
@@ -51,7 +84,7 @@ node src/cli.js shows episodes --show-id <showId> [--from <iso>] [--to <iso>] [-
 ### Fetch transcript
 
 ```bash
-node src/cli.js transcripts fetch --episode-id <episodeId> [--wait] [--poll-interval-ms <ms>] [--wait-timeout-ms <ms>] [--idempotency-key <key>] [--json]
+podfetcher transcripts fetch --episode-id <episodeId> [--wait] [--poll-interval-ms <ms>] [--wait-timeout-ms <ms>] [--idempotency-key <key>] [--json]
 ```
 
 - `--episode-id` is required
@@ -60,9 +93,9 @@ node src/cli.js transcripts fetch --episode-id <episodeId> [--wait] [--poll-inte
 
 ## Global CLI Options
 
-- `--api-key <key>` or `PODFETCHER_API_KEY`
-- `--base-url <url>` or `PODFETCHER_BASE_URL`
-- `--api-key-header <header>` or `PODFETCHER_API_KEY_HEADER`
+- `--api-key <key>` or `PODFETCHER_API_KEY` for Podfetcher authentication
+- `--base-url <url>` or `PODFETCHER_BASE_URL` for API endpoint override
+- `--api-key-header <header>` or `PODFETCHER_API_KEY_HEADER` for header override
 - `--timeout-ms <ms>`
 - `--json`
 
@@ -70,13 +103,13 @@ node src/cli.js transcripts fetch --episode-id <episodeId> [--wait] [--poll-inte
 
 ```bash
 # 1. Find a show
-node src/cli.js shows search --q "lex fridman" --limit 3 --json
+podfetcher shows search --q "lex fridman" --limit 3 --json
 
 # 2. List recent episodes
-node src/cli.js shows episodes --show-id <showId> --order-by publishedAt --order desc --limit 5 --json
+podfetcher shows episodes --show-id <showId> --order-by publishedAt --order desc --limit 5 --json
 
 # 3. Fetch the transcript and wait for completion
-node src/cli.js transcripts fetch --episode-id <episodeId> --wait --json
+podfetcher transcripts fetch --episode-id <episodeId> --wait --json
 ```
 
 ## MCP Server
@@ -84,7 +117,7 @@ node src/cli.js transcripts fetch --episode-id <episodeId> --wait --json
 Start the MCP server over stdio:
 
 ```bash
-node src/mcp.js
+podfetcher-mcp
 ```
 
 Available tools:

@@ -1,6 +1,6 @@
 # podfetcher-tools
 
-SDK + CLI + MCP server for the Podfetcher backend data-plane API.
+Node.js CLI, SDK, and MCP server for searching podcasts, listing episodes, and fetching transcripts from Podfetcher.
 
 ## Features
 - Shared SDK for API auth, requests, and error handling
@@ -11,7 +11,15 @@ SDK + CLI + MCP server for the Podfetcher backend data-plane API.
 - Node.js 20+
 - A valid Podfetcher API key (`X-API-Key`)
 
-## Install
+## Getting Started
+
+Create or sign in to your account at [podfetcher.com](https://podfetcher.com), then generate an API key from the Podfetcher dashboard.
+
+Export the key before using the CLI or MCP server:
+
+```bash
+export PODFETCHER_API_KEY="pk_live_your_key_here"
+```
 
 Install globally from npm to use the `podfetcher` and `podfetcher-mcp` commands anywhere:
 
@@ -42,22 +50,22 @@ CLI flags can override env values:
 
 ### Search shows
 ```bash
-node src/cli.js shows search --q "ai" --limit 5
+podfetcher shows search --q "ai" --limit 5
 ```
 
 ### List episodes for a show
 ```bash
-node src/cli.js shows episodes --show-id pi_1001 --order-by publishedAt --order desc --limit 10
+podfetcher shows episodes --show-id pi_1001 --order-by publishedAt --order desc --limit 10
 ```
 
 ### Fetch transcript for an episode
 ```bash
-node src/cli.js transcripts fetch --episode-id ep_pi_1001_004
+podfetcher transcripts fetch --episode-id ep_pi_1001_004
 ```
 
 ### Fetch transcript and wait until READY
 ```bash
-node src/cli.js transcripts fetch \
+podfetcher transcripts fetch \
   --episode-id ep_pi_1001_002 \
   --wait \
   --poll-interval-ms 1000 \
@@ -66,14 +74,14 @@ node src/cli.js transcripts fetch \
 
 ### Machine-readable JSON output
 ```bash
-node src/cli.js shows search --q "ai" --json
+podfetcher shows search --q "ai" --json
 ```
 
 ## MCP Usage
 Run the MCP server over stdio:
 
 ```bash
-node src/mcp.js
+podfetcher-mcp
 ```
 
 Available tools:

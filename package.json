@@ -19,8 +19,8 @@
   },
   "files": [
     "src",
-    "README.md",
-    "CONTRIBUTING.md"
+    "SKILL.md",
+    "README.md"
   ],
   "exports": {
     ".": "./src/sdk.js"
